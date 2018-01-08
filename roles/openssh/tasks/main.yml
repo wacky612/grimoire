@@ -1,0 +1,22 @@
+---
+- name: install openssh
+  portage:
+    package: openssh
+    state: present
+
+- name: enable sshd
+  systemd:
+    name: sshd
+    enabled: yes
+
+- name: modify /etc/ssh/sshd_config
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?{{ item.key }}"
+    line: "{{ item.key }} {{ item.value }}"
+  with_items:
+    - { key: PermitRootLogin, value: 'no' }
+    - { key: PasswordAuthentication, value: 'no' }
+    - { key: ChallengeResponseAuthentication, value: 'no' }
+  notify:
+    - restart sshd
