@@ -20,3 +20,9 @@
     - { key: ChallengeResponseAuthentication, value: 'no' }
   notify:
     - restart sshd
+
+- name: load iptables config for openssh
+  set_fact:
+    iptables: "{{ iptables | deepmerge({
+      'TCP': { 'rules': [ '-p tcp --dport 22 -j ACCEPT' ] },
+    }) }}"
