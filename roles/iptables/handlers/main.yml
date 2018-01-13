@@ -1,0 +1,5 @@
+---
+- name: reload iptables
+  systemd:
+    name: iptables-restore
+    state: restarted
