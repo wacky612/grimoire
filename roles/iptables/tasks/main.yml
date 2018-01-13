@@ -1,0 +1,34 @@
+---
+- name: enable iptables
+  systemd:
+    name: iptables-restore
+    enabled: yes
+
+- name: load iptables config
+  set_fact:
+    iptables: "{{ iptables | deepmerge({
+      'INPUT': {
+        'policy': 'DROP',
+        'rules': [
+          '-m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT',
+          '-i lo -j ACCEPT',
+          '-m conntrack --ctstate INVALID -j DROP',
+          '-p icmp -m icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT',
+          '-p udp -m conntrack --ctstate NEW -j UDP',
+          '-p tcp --tcp-flags FIN,SYN,RST,ACK SYN -m conntrack --ctstate NEW -j TCP',
+          '-p udp -j REJECT --reject-with icmp-port-unreachable',
+          '-p tcp -j REJECT --reject-with tcp-reset',
+          '-j REJECT --reject-with icmp-proto-unreachable'
+        ]
+      },
+      'OUTPUT': { 'policy': 'ACCEPT', 'rules': [] },
+      'FORWARD': { 'policy': 'DROP', 'rules': [] },
+      'TCP': { 'policy': '-', 'rules': [] },
+      'UDP': { 'policy': '-', 'rules': [] }
+    }) }}"
+
+- name: install /var/lib/iptables/rules-save
+  template:
+    src: rules-save.j2
+    dest: /var/lib/iptables/rules-save
+  notify: reload iptables
