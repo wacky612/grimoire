@@ -1,6 +1,6 @@
 export PATH := .venv/bin:$(PATH)
 
-.PHONY: prepare area6
+.PHONY: prepare area6 x201
 
 prepare: .venv
 
@@ -10,3 +10,6 @@ prepare: .venv
 
 area6:
 	ansible-playbook -K area6.yml
+
+x201:
+	ansible-playbook -K x201.yml
