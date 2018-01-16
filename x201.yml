@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+  vars:
+    iptables: {}
+  roles:
+    - openssh
+  post_tasks:
+    - import_role: 
+        name: iptables
