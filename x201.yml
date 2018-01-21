@@ -11,7 +11,7 @@
     iptables: {}
   roles:
     - openssh
-    - portage
+    - xmonad
   post_tasks:
     - import_role: 
         name: iptables

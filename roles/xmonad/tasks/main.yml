@@ -1,0 +1,24 @@
+---
+- name: configure /etc/portage/package.use/*
+  copy:
+    src: "package.use/{{ item }}"
+    dest: "/etc/portage/package.use/{{ item }}"
+  with_items:
+    - xmobar
+    - dunst
+
+- name: install xmonad and some packages
+  portage:
+    package: "{{ item }}"
+    state: present
+  with_items:
+    - xmonad-contrib
+    - xmobar
+    - dmenu
+    - dunst
+    - stalonetray
+
+- name: install xmonad.desktop
+  copy:
+    src: xmonad.desktop
+    dest: /usr/share/xsessions/xmonad.desktop
