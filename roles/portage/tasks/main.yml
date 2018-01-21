@@ -1,0 +1,22 @@
+---
+- name: create portage directorys
+  file:
+    path: "/etc/portage/{{ item }}"
+    mode: 0755
+    state: directory
+  with_items:
+    - package.use
+    - package.keywords
+
+- name: modify /etc/portage/make.conf
+  lineinfile:
+    path: /etc/portage/make.conf
+    regexp: "^#?{{ item.key }}"
+    line: "{{ item.key }}=\"{{ item.value }}\""
+  with_items:
+    - { key: CFLAGS, value: '-march=native -O2 -pipe' }
+    - { key: USE, value: "{{ portage.use }}" }
+    - { key: CPU_FLAGS_X86, value: "{{ portage.cpu_flags_x86 }}" }
+    - { key: LINGUAS, value: "{{ portage.linguas }}" }
+    - { key: MAKEOPTS, value: "{{ portage.makeopts }}" }
+    - { key: GENTOO_MIRRORS, value: 'http://ftp.iij.ad.jp/pub/linux/gentoo' }
