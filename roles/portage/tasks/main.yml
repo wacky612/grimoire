@@ -20,3 +20,8 @@
     - { key: LINGUAS, value: "{{ portage.linguas }}" }
     - { key: MAKEOPTS, value: "{{ portage.makeopts }}" }
     - { key: GENTOO_MIRRORS, value: 'http://ftp.iij.ad.jp/pub/linux/gentoo' }
+
+- name: install eix
+  portage:
+    package: eix
+    state: present
