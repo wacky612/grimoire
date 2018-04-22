@@ -1,0 +1,30 @@
+---
+- name: configure /etc/portage/package.use/*
+  copy:
+    src: "package.use/{{ item }}"
+    dest: "/etc/portage/package.use/{{ item }}"
+  with_items:
+    - luakit
+    - rxvt-unicode
+    - uim
+
+- name: configure /etc/portage/package.keywords/*
+  copy:
+    src: "package.keywords/{{ item }}"
+    dest: "/etc/portage/package.keywords/{{ item }}"
+  with_items:
+    - luakit
+    - ricty
+
+- name: install gui applications
+  portage:
+    package: "{{ item }}"
+    state: present
+  with_items:
+    - luakit
+    - ricty
+    - takao-fonts
+    - uim
+    - urxvt-font-size
+    - urxvt-perls
+    - vanilla-dmz-xcursors
