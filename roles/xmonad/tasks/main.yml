@@ -6,6 +6,7 @@
   with_items:
     - xmobar
     - dunst
+    - trayer
 
 - name: install xmonad and some packages
   portage:
@@ -16,7 +17,7 @@
     - xmobar
     - dmenu
     - dunst
-    - stalonetray
+    - trayer
 
 - name: install xmonad.desktop
   copy:
