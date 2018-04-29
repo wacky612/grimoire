@@ -1,0 +1,11 @@
+---
+- name: set timezone
+  file:
+    src: /usr/share/zoneinfo/Asia/Tokyo
+    dest: /etc/localtime
+    state: link
+
+- name: enable systemd-timesyncd
+  systemd:
+    name: systemd-timesyncd
+    enabled: yes
