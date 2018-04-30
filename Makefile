@@ -13,3 +13,6 @@ area6:
 
 x201:
 	ansible-playbook -K x201.yml
+
+node304:
+	ansible-playbook -K node304.yml
