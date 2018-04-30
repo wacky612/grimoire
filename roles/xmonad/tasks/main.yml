@@ -6,7 +6,16 @@
   with_items:
     - xmobar
     - dunst
+    - pavucontrol
+    - pavumeter
     - trayer
+
+- name: configure /etc/portage/package.keywords/*
+  copy:
+    src: "package.keywords/{{ item }}"
+    dest: "/etc/portage/package.keywords/{{ item }}"
+  with_items:
+    - pasystray
 
 - name: install xmonad and some packages
   portage:
@@ -17,6 +26,9 @@
     - xmobar
     - dmenu
     - dunst
+    - pasystray
+    - pavucontrol
+    - pavumeter
     - trayer
 
 - name: install xmonad.desktop
