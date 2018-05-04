@@ -15,6 +15,7 @@
     - systemd
     - openssh
     - cli
+    - samba
     - xorg
     - xmonad
     - gui
