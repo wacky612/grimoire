@@ -5,6 +5,7 @@
     dest: "/etc/portage/package.use/{{ item }}"
   with_items:
     - luakit
+    - mpv
     - rxvt-unicode
     - uim
 
@@ -13,6 +14,7 @@
     src: "package.keywords/{{ item }}"
     dest: "/etc/portage/package.keywords/{{ item }}"
   with_items:
+    - lastpass-cli
     - luakit
     - ricty
 
@@ -24,10 +26,13 @@
     - gst-plugins-good
     - gst-plugins-libav
     - gst-plugins-pulse
+    - lastpass-cli
     - luakit
+    - mpv
     - ricty
     - takao-fonts
     - uim
     - urxvt-font-size
     - urxvt-perls
     - vanilla-dmz-xcursors
+    - zathura-pdf-mupdf
