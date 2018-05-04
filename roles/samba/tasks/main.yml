@@ -1,0 +1,44 @@
+---
+- name: configure /etc/portage/package.use/*
+  copy:
+    src: "package.use/{{ item }}"
+    dest: "/etc/portage/package.use/{{ item }}"
+  with_items:
+    - samba
+
+- name: install samba
+  portage:
+    package: samba
+    state: present
+
+- name: enable samba
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+  with_items:
+    - smbd
+    - nmbd
+
+- name: install /etc/samba/smb.conf
+  copy:
+    src: smb.conf
+    dest: /etc/samba/smb.conf
+  notify:
+    - restart samba
+
+- name: load iptables config for samba
+  set_fact:
+    iptables: "{{ iptables | deepmerge({
+      'TCP': {
+        'rules': [
+          '-p tcp --dport 137:139 -j ACCEPT',
+          '-p tcp --dport 445 -j ACCEPT'
+        ]
+      },
+      'UDP': {
+        'rules': [
+          '-p udp --dport 137:139 -j ACCEPT',
+          '-p udp --dport 445 -j ACCEPT'
+        ]
+      }
+    }) }}"
