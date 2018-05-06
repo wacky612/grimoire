@@ -1,0 +1,24 @@
+---
+- name: configure /etc/portage/package.use/*
+  copy:
+    src: "package.use/{{ item }}"
+    dest: "/etc/portage/package.use/{{ item }}"
+  with_items:
+    - lightdm
+
+- name: configure /etc/portage/package.keywords/*
+  copy:
+    src: "package.keywords/{{ item }}"
+    dest: "/etc/portage/package.keywords/{{ item }}"
+  with_items:
+    - lightdm
+
+- name: install lightdm
+  portage:
+    package: light-locker
+    state: present
+
+- name: enable lightdm
+  systemd:
+    name: lightdm
+    enabled: yes
