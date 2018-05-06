@@ -17,6 +17,7 @@
     - cli
     - samba
     - xorg
+    - lightdm
     - xmonad
     - gui
   post_tasks:
