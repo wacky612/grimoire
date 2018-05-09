@@ -7,7 +7,6 @@
     - luakit
     - mpv
     - rxvt-unicode
-    - uim
 
 - name: configure /etc/portage/package.keywords/*
   copy:
@@ -26,12 +25,12 @@
     - gst-plugins-good
     - gst-plugins-libav
     - gst-plugins-pulse
+    - ibus-skk
     - lastpass-cli
     - luakit
     - mpv
     - ricty
     - takao-fonts
-    - uim
     - urxvt-font-size
     - urxvt-perls
     - vanilla-dmz-xcursors
