@@ -7,6 +7,19 @@
   with_items:
     - package.use
     - package.keywords
+    - repos.conf
+
+- name: create local portage directory
+  file:
+    path: "/usr/local/{{ item }}"
+    mode: 0755
+    owner: portage
+    group: portage
+    state: directory
+  with_items:
+    - portage
+    - portage/metadata
+    - portage/profiles
 
 - name: modify /etc/portage/make.conf
   lineinfile:
@@ -20,6 +33,21 @@
     - { key: LINGUAS, value: "{{ portage.linguas }}" }
     - { key: MAKEOPTS, value: "{{ portage.makeopts }}" }
     - { key: GENTOO_MIRRORS, value: 'http://ftp.iij.ad.jp/pub/linux/gentoo' }
+
+- name: install /etc/portage/repos.conf/local.conf
+  copy:
+    src: local.conf
+    dest: /etc/portage/repos.conf/local.conf
+
+- name: install /usr/local/portage/profiles/repo_name
+  copy:
+    src: "{{ item.src }}"
+    dest: "/usr/local/portage/{{ item.dest }}"
+    owner: portage
+    group: portage
+  with_items:
+    - { src: repo_name, dest: profiles/ }
+    - { src: layout.conf, dest: metadata/ }
 
 - name: install eix
   portage:
