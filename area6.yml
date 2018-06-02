@@ -13,6 +13,7 @@
     - systemd
     - openssh
     - cli
+    - prince
   post_tasks:
     - import_role: 
         name: iptables
