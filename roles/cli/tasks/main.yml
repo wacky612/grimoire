@@ -18,6 +18,7 @@
     package: "{{ item }}"
     state: present
   with_items:
+    - bundler
     - emacs
     - feh
     - gentoo-zsh-completions
