@@ -23,6 +23,7 @@
     - feh
     - gentoo-zsh-completions
     - nano
+    - nkf
     - source-highlight
     - tig
     - tmux
