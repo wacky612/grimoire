@@ -4,6 +4,7 @@
     src: "package.use/{{ item }}"
     dest: "/etc/portage/package.use/{{ item }}"
   with_items:
+    - chromium
     - luakit
     - mpv
     - rxvt-unicode
@@ -22,6 +23,7 @@
     package: "{{ item }}"
     state: present
   with_items:
+    - chromium
     - gst-plugins-good
     - gst-plugins-libav
     - gst-plugins-pulse
