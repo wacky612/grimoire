@@ -19,6 +19,7 @@
     state: present
   with_items:
     - bundler
+    - convmv
     - emacs
     - feh
     - gentoo-zsh-completions
