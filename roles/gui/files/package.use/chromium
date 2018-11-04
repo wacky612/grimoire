@@ -1,3 +1,4 @@
 sys-libs/zlib minizip
 dev-libs/libxml2 icu
 app-text/xmlto text
+net-libs/nodejs inspector icu
