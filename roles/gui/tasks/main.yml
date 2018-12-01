@@ -8,6 +8,7 @@
     - luakit
     - mpv
     - rxvt-unicode
+    - zathura-pdf-mupdf
 
 - name: configure /etc/portage/package.keywords/*
   copy:
