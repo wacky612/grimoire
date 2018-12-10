@@ -21,6 +21,7 @@
     - xmonad
     - gui
     - prince
+    - luakit
   post_tasks:
     - import_role: 
         name: iptables

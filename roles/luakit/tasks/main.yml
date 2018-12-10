@@ -1,0 +1,48 @@
+---
+- name: create www-client/luakit directorys
+  file:
+    path: "/usr/local/portage/{{ item }}"
+    mode: 0755
+    owner: portage
+    group: portage
+    state: directory
+  with_items:
+    - www-client
+    - www-client/luakit
+    - www-client/luakit/files
+
+- name: install www-client/luakit/*
+  copy:
+    src: "{{ item }}"
+    dest: "/usr/local/portage/www-client/luakit/{{ item }}"
+    owner: portage
+    group: portage
+  with_items:
+    - Manifest
+    - luakit-9999.ebuild
+    - files/luakit-cflags.patch
+    - files/luakit-fix_tests.patch
+
+- name: configure /etc/portage/package.use/*
+  copy:
+    src: "package.use/{{ item }}"
+    dest: "/etc/portage/package.use/{{ item }}"
+  with_items:
+    - luakit
+
+- name: configure /etc/portage/package.keywords/*
+  copy:
+    src: "package.keywords/{{ item }}"
+    dest: "/etc/portage/package.keywords/{{ item }}"
+  with_items:
+    - luakit
+
+- name: install luakit and some applications
+  portage:
+    package: "{{ item }}"
+    state: present
+  with_items:
+    - gst-plugins-good
+    - gst-plugins-libav
+    - gst-plugins-pulse
+    - luakit
