@@ -5,7 +5,6 @@
     dest: "/etc/portage/package.use/{{ item }}"
   with_items:
     - chromium
-    - luakit
     - mpv
     - rxvt-unicode
     - zathura-pdf-mupdf
@@ -16,7 +15,6 @@
     dest: "/etc/portage/package.keywords/{{ item }}"
   with_items:
     - lastpass-cli
-    - luakit
     - ricty
 
 - name: install gui applications
@@ -25,12 +23,8 @@
     state: present
   with_items:
     - chromium
-    - gst-plugins-good
-    - gst-plugins-libav
-    - gst-plugins-pulse
     - ibus-skk
     - lastpass-cli
-    - luakit
     - mpv
     - ricty
     - takao-fonts
