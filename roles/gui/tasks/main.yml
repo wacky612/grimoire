@@ -14,7 +14,6 @@
     src: "package.keywords/{{ item }}"
     dest: "/etc/portage/package.keywords/{{ item }}"
   with_items:
-    - lastpass-cli
     - ricty
 
 - name: install gui applications
@@ -24,7 +23,6 @@
   with_items:
     - chromium
     - ibus-skk
-    - lastpass-cli
     - mpv
     - ricty
     - takao-fonts
