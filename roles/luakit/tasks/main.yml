@@ -35,6 +35,7 @@
     src: "package.keywords/{{ item }}"
     dest: "/etc/portage/package.keywords/{{ item }}"
   with_items:
+    - lastpass-cli
     - luakit
 
 - name: install luakit and some applications
@@ -45,4 +46,5 @@
     - gst-plugins-good
     - gst-plugins-libav
     - gst-plugins-pulse
+    - lastpass-cli
     - luakit
