@@ -28,6 +28,7 @@
     src: "package.use/{{ item }}"
     dest: "/etc/portage/package.use/{{ item }}"
   with_items:
+    - lastpass-cli
     - luakit
 
 - name: configure /etc/portage/package.keywords/*
