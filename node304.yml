@@ -16,7 +16,7 @@
     - openssh
     - cli
     - samba
-    - xorg
+    - xorg-server
     - lightdm
     - xmonad
     - gui
