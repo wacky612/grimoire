@@ -4,7 +4,6 @@
     src: "package.use/{{ item }}"
     dest: "/etc/portage/package.use/{{ item }}"
   with_items:
-    - chromium
     - mpv
     - rxvt-unicode
     - zathura-pdf-mupdf
@@ -14,7 +13,6 @@
     package: "{{ item }}"
     state: present
   with_items:
-    - chromium
     - mpv
     - urxvt-font-size
     - urxvt-perls
