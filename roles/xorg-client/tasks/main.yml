@@ -1,0 +1,17 @@
+---
+- name: configure /etc/portage/package.keywords/*
+  copy:
+    src: "package.keywords/{{ item }}"
+    dest: "/etc/portage/package.keywords/{{ item }}"
+  with_items:
+    - ricty
+
+- name: install fonts, cursor, and IME
+  portage:
+    package: "{{ item }}"
+    state: present
+  with_items:
+    - ibus-skk
+    - ricty
+    - takao-fonts
+    - vanilla-dmz-xcursors

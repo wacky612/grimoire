@@ -1,3 +1,4 @@
 ---
 dependencies:
   - { role: portage }
+  - { role: xorg-client }
