@@ -9,24 +9,13 @@
     - rxvt-unicode
     - zathura-pdf-mupdf
 
-- name: configure /etc/portage/package.keywords/*
-  copy:
-    src: "package.keywords/{{ item }}"
-    dest: "/etc/portage/package.keywords/{{ item }}"
-  with_items:
-    - ricty
-
 - name: install gui applications
   portage:
     package: "{{ item }}"
     state: present
   with_items:
     - chromium
-    - ibus-skk
     - mpv
-    - ricty
-    - takao-fonts
     - urxvt-font-size
     - urxvt-perls
-    - vanilla-dmz-xcursors
     - zathura-pdf-mupdf
