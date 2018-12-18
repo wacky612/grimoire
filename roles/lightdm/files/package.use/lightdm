@@ -1,2 +1,4 @@
+x11-libs/cairo X
+dev-lang/python sqlite
 x11-misc/lightdm -gnome
 sys-apps/dbus X

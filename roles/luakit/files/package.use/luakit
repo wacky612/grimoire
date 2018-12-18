@@ -1,5 +1,5 @@
 www-client/luakit luajit
 dev-lua/luafilesystem luajit
-x11-libs/cairo opengl
+x11-libs/cairo X opengl
 media-libs/harfbuzz icu
 media-libs/gst-plugins-bad X
