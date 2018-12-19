@@ -9,6 +9,8 @@
       linguas: 'ja'
       makeopts: '-j5'
     iptables: {}
+    openssh:
+      xforwarding: false
     xorg:
       video_cards: 'intel i965'
   roles:
