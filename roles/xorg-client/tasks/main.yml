@@ -1,4 +1,11 @@
 ---
+- name: configure /etc/portage/package.use/*
+  copy:
+    src: "package.use/{{ item }}"
+    dest: "/etc/portage/package.use/{{ item }}"
+  with_items:
+    - ibus-skk
+
 - name: configure /etc/portage/package.keywords/*
   copy:
     src: "package.keywords/{{ item }}"
