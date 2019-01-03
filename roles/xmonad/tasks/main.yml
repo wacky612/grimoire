@@ -30,6 +30,7 @@
     - pavucontrol
     - pavumeter
     - trayer
+    - xset
 
 - name: install xmonad.desktop
   copy:
