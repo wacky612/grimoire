@@ -9,6 +9,8 @@
       linguas: 'ja'
       makeopts: '-j3'
     iptables: {}
+    openssh:
+      xforwarding: true
   roles:
     - systemd
     - openssh
