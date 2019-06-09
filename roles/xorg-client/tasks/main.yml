@@ -13,6 +13,13 @@
   with_items:
     - ricty
 
+- name: configure /etc/portage/package.license/*
+  copy:
+    src: "package.license/{{ item }}"
+    dest: "/etc/portage/package.license/{{ item }}"
+  with_items:
+    - skk-jisyo
+
 - name: install fonts, cursor, and IME
   portage:
     package: "{{ item }}"
