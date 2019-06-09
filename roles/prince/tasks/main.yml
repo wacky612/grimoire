@@ -22,6 +22,13 @@
     - prince-6.0_p8.ebuild
     - files/prince-6.0-destdir.patch
 
+- name: configure /etc/portage/package.license/*
+  copy:
+    src: "package.license/{{ item }}"
+    dest: "/etc/portage/package.license/{{ item }}"
+  with_items:
+    - prince
+
 - name: install prince
   portage:
     package: prince
