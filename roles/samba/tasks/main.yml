@@ -16,8 +16,8 @@
     name: "{{ item }}"
     enabled: yes
   with_items:
-    - smbd
-    - nmbd
+    - smb
+    - nmb
 
 - name: install /etc/samba/smb.conf
   copy:
