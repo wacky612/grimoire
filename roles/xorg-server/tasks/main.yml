@@ -13,6 +13,13 @@
     state: present
   when: xorg.video_cards is match('intel')
 
+- name: configure /etc/portage/package.use/*
+  copy:
+    src: "package.use/{{ item }}"
+    dest: "/etc/portage/package.use/{{ item }}"
+  with_items:
+    - xorg-server
+
 - name: install xorg-server
   portage:
     package: xorg-server
