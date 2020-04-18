@@ -6,7 +6,7 @@
     state: directory
   with_items:
     - package.use
-    - package.keywords
+    - package.accept_keywords
     - package.license
     - repos.conf
 
