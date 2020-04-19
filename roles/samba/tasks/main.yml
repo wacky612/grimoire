@@ -31,14 +31,22 @@
     iptables: "{{ iptables | deepmerge({
       'TCP': {
         'rules': [
-          '-p tcp --dport 137:139 -j ACCEPT',
-          '-p tcp --dport 445 -j ACCEPT'
+          '-s 192.168.0.0/16 -p tcp --dport 137:139 -j ACCEPT',
+          '-s 172.16.0.0/12  -p tcp --dport 137:139 -j ACCEPT',
+          '-s 10.0.0.0/8     -p tcp --dport 137:139 -j ACCEPT',
+          '-s 192.168.0.0/16 -p tcp --dport 445 -j ACCEPT',
+          '-s 172.16.0.0/12  -p tcp --dport 445 -j ACCEPT',
+          '-s 10.0.0.0/8     -p tcp --dport 445 -j ACCEPT'
         ]
       },
       'UDP': {
         'rules': [
-          '-p udp --dport 137:139 -j ACCEPT',
-          '-p udp --dport 445 -j ACCEPT'
+          '-s 192.168.0.0/16 -p udp --dport 137:139 -j ACCEPT',
+          '-s 172.16.0.0/12  -p udp --dport 137:139 -j ACCEPT',
+          '-s 10.0.0.0/8     -p udp --dport 137:139 -j ACCEPT',
+          '-s 192.168.0.0/16 -p udp --dport 445 -j ACCEPT',
+          '-s 172.16.0.0/12  -p udp --dport 445 -j ACCEPT',
+          '-s 10.0.0.0/8     -p udp --dport 445 -j ACCEPT'
         ]
       }
     }) }}"
