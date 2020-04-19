@@ -5,6 +5,7 @@
     dest: "/etc/portage/package.use/{{ item }}"
   with_items:
     - feh
+    - iputils
 
 - name: configure /etc/portage/package.accept_keywords/*
   copy:
