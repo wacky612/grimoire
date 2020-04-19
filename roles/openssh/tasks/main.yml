@@ -43,3 +43,6 @@
     iptables: "{{ iptables | deepmerge({
       'TCP': { 'rules': [ '-p tcp --dport 22 -j ACCEPT' ] },
     }) }}"
+    ip6tables: "{{ ip6tables | deepmerge({
+      'TCP': { 'rules': [ '-p tcp --dport 22 -j ACCEPT' ] },
+    }) }}"

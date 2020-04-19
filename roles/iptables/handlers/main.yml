@@ -3,3 +3,8 @@
   systemd:
     name: iptables-restore
     state: restarted
+
+- name: reload ip6tables
+  systemd:
+    name: ip6tables-restore
+    state: restarted

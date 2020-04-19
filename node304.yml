@@ -9,6 +9,7 @@
       linguas: 'ja'
       makeopts: '-j5'
     iptables: {}
+    ip6tables: {}
     openssh:
       xforwarding: false
     xorg:

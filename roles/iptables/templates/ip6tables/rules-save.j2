@@ -1,0 +1,10 @@
+*filter
+{% for k in ip6tables.keys() | sort %}
+:{{ k }} {{ ip6tables[k]['policy'] }} [0:0]
+{% endfor %}
+{% for k in ip6tables.keys() | sort %}
+{% for r in ip6tables[k]['rules'] %}
+-A {{ k }} {{ r }}
+{% endfor %}
+{% endfor %}
+COMMIT
