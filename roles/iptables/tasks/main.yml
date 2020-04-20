@@ -36,8 +36,7 @@
           '-m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT',
           '-i lo -j ACCEPT',
           '-m conntrack --ctstate INVALID -j DROP',
-          '-p ipv6-icmp --icmpv6-type 128 -m conntrack --ctstate NEW -j ACCEPT',
-          '-s fe80::/10 -p ipv6-icmp -j ACCEPT',
+          '-p icmpv6 -j ICMP',
           '-p udp -m conntrack --ctstate NEW -j UDP',
           '-p tcp --tcp-flags FIN,SYN,RST,ACK SYN -m conntrack --ctstate NEW -j TCP',
           '-p udp -j REJECT --reject-with icmp6-port-unreachable',
@@ -48,7 +47,33 @@
       'OUTPUT': { 'policy': 'ACCEPT', 'rules': [] },
       'FORWARD': { 'policy': 'DROP', 'rules': [] },
       'TCP': { 'policy': '-', 'rules': [] },
-      'UDP': { 'policy': '-', 'rules': [] }
+      'UDP': { 'policy': '-', 'rules': [] },
+      'ICMP': {
+        'policy': '-',
+        'rules': [
+          '-p icmpv6 --icmpv6-type 1 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 2 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 3 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 4 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 128 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 129 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 133 -m hl --hl-eq 255 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 134 -m hl --hl-eq 255 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 135 -m hl --hl-eq 255 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 136 -m hl --hl-eq 255 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 141 -m hl --hl-eq 255 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 142 -m hl --hl-eq 255 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 130 -s fe80::/10 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 131 -s fe80::/10 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 132 -s fe80::/10 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 143 -s fe80::/10 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 148 -m hl --hl-eq 255 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 149 -m hl --hl-eq 255 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 151 -s fe80::/10 -m hl --hl-eq 1 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 152 -s fe80::/10 -m hl --hl-eq 1 -j ACCEPT',
+          '-p icmpv6 --icmpv6-type 153 -s fe80::/10 -m hl --hl-eq 1 -j ACCEPT'
+        ]
+      }
     }) }}"
 
 - name: install /var/lib/iptables/rules-save
