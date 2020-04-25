@@ -18,6 +18,7 @@
     - systemd
     - openssh
     - cli
+    - atftp
     - samba
     - xorg-server
     - lightdm

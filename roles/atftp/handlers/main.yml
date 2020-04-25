@@ -1,0 +1,5 @@
+---
+- name: restart atftp
+  systemd:
+    name: atftp
+    state: restarted

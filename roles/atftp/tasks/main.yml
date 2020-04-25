@@ -1,0 +1,28 @@
+---
+- name: install atftp
+  portage:
+    package: atftp
+    state: present
+
+- name: modify /etc/systemd/system/atftp.service.d/00gentoo.conf
+  ini_file:
+    path: /etc/systemd/system/atftp.service.d/00gentoo.conf
+    section: Service
+    option: Environment
+    value: '"TFTPD_ROOT=/srv/tftp/"'
+  notify:
+    - restart atftp
+
+- name: enable atftp
+  systemd:
+    name: atftp
+    enabled: yes
+
+- name: load iptables config for atftp
+  set_fact:
+    iptables: "{{ iptables | deepmerge({
+      'UDP': { 'rules': [ '-p udp --dport 69 -j ACCEPT' ] },
+    }) }}"
+    ip6tables: "{{ ip6tables | deepmerge({
+      'UDP': { 'rules': [ '-p udp --dport 69 -j ACCEPT' ] },
+    }) }}"
