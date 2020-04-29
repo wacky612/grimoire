@@ -1,0 +1,9 @@
+x11-wm/xmonad ~amd64
+x11-wm/xmonad-contrib ~amd64
+dev-haskell/semigroups ~amd64
+dev-haskell/bytestring-builder ~amd64
+dev-haskell/hashable ~amd64
+dev-haskell/nats ~amd64
+dev-haskell/tagged ~amd64
+dev-haskell/unordered-containers ~amd64
+dev-haskell/transformers-compat ~amd64

@@ -15,6 +15,7 @@
     src: "package.accept_keywords/{{ item }}"
     dest: "/etc/portage/package.accept_keywords/{{ item }}"
   with_items:
+    - xmonad
     - pasystray
 
 - name: install xmonad and some packages
