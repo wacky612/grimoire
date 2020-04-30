@@ -12,15 +12,13 @@
 
 - name: create local portage directory
   file:
-    path: "/usr/local/{{ item }}"
+    path: "/var/db/repos/{{ item }}"
     mode: 0755
-    owner: portage
-    group: portage
     state: directory
   with_items:
-    - portage
-    - portage/metadata
-    - portage/profiles
+    - local
+    - local/metadata
+    - local/profiles
 
 - name: modify /etc/portage/make.conf
   lineinfile:
@@ -28,7 +26,7 @@
     regexp: "^#?{{ item.key }}"
     line: "{{ item.key }}=\"{{ item.value }}\""
   with_items:
-    - { key: CFLAGS, value: '-march=native -O2 -pipe' }
+    - { key: COMMON_FLAGS, value: '-march=native -O2 -pipe' }
     - { key: USE, value: "{{ portage.use }}" }
     - { key: CPU_FLAGS_X86, value: "{{ portage.cpu_flags_x86 }}" }
     - { key: LINGUAS, value: "{{ portage.linguas }}" }
@@ -40,12 +38,10 @@
     src: local.conf
     dest: /etc/portage/repos.conf/local.conf
 
-- name: install /usr/local/portage/profiles/repo_name
+- name: install /var/db/repos/local/profiles/repo_name
   copy:
     src: "{{ item.src }}"
-    dest: "/usr/local/portage/{{ item.dest }}"
-    owner: portage
-    group: portage
+    dest: "/var/db/repos/local/{{ item.dest }}"
   with_items:
     - { src: repo_name, dest: profiles/ }
     - { src: layout.conf, dest: metadata/ }
