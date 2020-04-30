@@ -32,8 +32,3 @@
     - pavumeter
     - trayer
     - xset
-
-- name: install xmonad.desktop
-  copy:
-    src: xmonad.desktop
-    dest: /usr/share/xsessions/xmonad.desktop
