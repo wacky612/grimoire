@@ -1,10 +1,8 @@
 ---
 - name: create www-client/luakit directorys
   file:
-    path: "/usr/local/portage/{{ item }}"
+    path: "/var/db/repos/local/{{ item }}"
     mode: 0755
-    owner: portage
-    group: portage
     state: directory
   with_items:
     - www-client
@@ -14,9 +12,7 @@
 - name: install www-client/luakit/*
   copy:
     src: "{{ item }}"
-    dest: "/usr/local/portage/www-client/luakit/{{ item }}"
-    owner: portage
-    group: portage
+    dest: "/var/db/repos/local/www-client/luakit/{{ item }}"
   with_items:
     - Manifest
     - luakit-9999.ebuild

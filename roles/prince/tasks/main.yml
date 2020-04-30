@@ -1,10 +1,8 @@
 ---
 - name: create app-text/prince directorys
   file:
-    path: "/usr/local/portage/{{ item }}"
+    path: "/var/db/repos/local/{{ item }}"
     mode: 0755
-    owner: portage
-    group: portage
     state: directory
   with_items:
     - app-text
@@ -14,9 +12,7 @@
 - name: install app-text/prince/*
   copy:
     src: "{{ item }}"
-    dest: "/usr/local/portage/app-text/prince/{{ item }}"
-    owner: portage
-    group: portage
+    dest: "/var/db/repos/local/app-text/prince/{{ item }}"
   with_items:
     - Manifest
     - prince-6.0_p8.ebuild
