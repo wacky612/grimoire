@@ -19,6 +19,7 @@
           '-p icmp -m icmp --icmp-type 8 -m conntrack --ctstate NEW -j ACCEPT',
           '-p udp -m conntrack --ctstate NEW -j UDP',
           '-p tcp --tcp-flags FIN,SYN,RST,ACK SYN -m conntrack --ctstate NEW -j TCP',
+          '-j MISC',
           '-p udp -j REJECT --reject-with icmp-port-unreachable',
           '-p tcp -j REJECT --reject-with tcp-reset',
           '-j REJECT --reject-with icmp-proto-unreachable'
@@ -27,7 +28,8 @@
       'OUTPUT': { 'policy': 'ACCEPT', 'rules': [] },
       'FORWARD': { 'policy': 'DROP', 'rules': [] },
       'TCP': { 'policy': '-', 'rules': [] },
-      'UDP': { 'policy': '-', 'rules': [] }
+      'UDP': { 'policy': '-', 'rules': [] },
+      'MISC': { 'policy': '-', 'rules': [] }
     }) }}"
     ip6tables: "{{ ip6tables | deepmerge({
       'INPUT': {
@@ -39,6 +41,7 @@
           '-p icmpv6 -j ICMP',
           '-p udp -m conntrack --ctstate NEW -j UDP',
           '-p tcp --tcp-flags FIN,SYN,RST,ACK SYN -m conntrack --ctstate NEW -j TCP',
+          '-j MISC',
           '-p udp -j REJECT --reject-with icmp6-port-unreachable',
           '-p tcp -j REJECT --reject-with tcp-reset',
           '-j REJECT --reject-with icmp6-adm-prohibited'
@@ -73,7 +76,8 @@
           '-p icmpv6 --icmpv6-type 152 -s fe80::/10 -m hl --hl-eq 1 -j ACCEPT',
           '-p icmpv6 --icmpv6-type 153 -s fe80::/10 -m hl --hl-eq 1 -j ACCEPT'
         ]
-      }
+      },
+      'MISC': { 'policy': '-', 'rules': [] }
     }) }}"
 
 - name: install /var/lib/iptables/rules-save

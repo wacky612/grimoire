@@ -9,7 +9,7 @@
       linguas: 'ja'
       makeopts: '-j3'
     iptables: {}
-    ip6tables: {}
+    ip6tables: { 'MISC': { 'rules': [ '-p ipencap -j ACCEPT' ] } }
     openssh:
       xforwarding: true
   roles:
