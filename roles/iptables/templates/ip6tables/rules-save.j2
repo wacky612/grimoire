@@ -1,10 +1,12 @@
-*filter
-{% for k in ip6tables.keys() | sort %}
-:{{ k }} {{ ip6tables[k]['policy'] }} [0:0]
+{% for table in ip6tables.keys() %}
+*{{ table }}
+{% for chain in ip6tables[table].keys() %}
+:{{ chain }} {{ ip6tables[table][chain]['policy'] }} [0:0]
 {% endfor %}
-{% for k in ip6tables.keys() | sort %}
-{% for r in ip6tables[k]['rules'] %}
--A {{ k }} {{ r }}
+{% for chain in ip6tables[table].keys() %}
+{% for rule in ip6tables[table][chain]['rules'] %}
+-A {{ chain }} {{ rule }}
 {% endfor %}
 {% endfor %}
 COMMIT
+{% endfor %}

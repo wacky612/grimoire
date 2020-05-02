@@ -29,30 +29,34 @@
 - name: load iptables config for samba
   set_fact:
     iptables: "{{ iptables | deepmerge({
-      'TCP': {
-        'rules': [
-          '-s 192.168.0.0/16 -p tcp --dport 137:139 -j ACCEPT',
-          '-s 192.168.0.0/16 -p tcp --dport 445 -j ACCEPT'
-        ]
-      },
-      'UDP': {
-        'rules': [
-          '-s 192.168.0.0/16 -p udp --dport 137:139 -j ACCEPT',
-          '-s 192.168.0.0/16 -p udp --dport 445 -j ACCEPT'
-        ]
+      'filter': {
+        'TCP': {
+          'rules': [
+            '-s 192.168.0.0/16 -p tcp --dport 137:139 -j ACCEPT',
+            '-s 192.168.0.0/16 -p tcp --dport 445 -j ACCEPT'
+          ]
+        },
+        'UDP': {
+          'rules': [
+            '-s 192.168.0.0/16 -p udp --dport 137:139 -j ACCEPT',
+            '-s 192.168.0.0/16 -p udp --dport 445 -j ACCEPT'
+          ]
+        }
       }
     }) }}"
     ip6tables: "{{ ip6tables | deepmerge({
-      'TCP': {
-        'rules': [
-          '-s fc00::/7 -p tcp --dport 137:139 -j ACCEPT',
-          '-s fc00::/7 -p tcp --dport 445 -j ACCEPT'
-        ]
-      },
-      'UDP': {
-        'rules': [
-          '-s fc00::/7 -p udp --dport 137:139 -j ACCEPT',
-          '-s fc00::/7 -p udp --dport 445 -j ACCEPT'
-        ]
+      'filter': {
+        'TCP': {
+          'rules': [
+            '-s fc00::/7 -p tcp --dport 137:139 -j ACCEPT',
+            '-s fc00::/7 -p tcp --dport 445 -j ACCEPT'
+          ]
+        },
+        'UDP': {
+          'rules': [
+            '-s fc00::/7 -p udp --dport 137:139 -j ACCEPT',
+            '-s fc00::/7 -p udp --dport 445 -j ACCEPT'
+          ]
+        }
       }
     }) }}"

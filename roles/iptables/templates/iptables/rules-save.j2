@@ -1,10 +1,12 @@
-*filter
-{% for k in iptables.keys() | sort %}
-:{{ k }} {{ iptables[k]['policy'] }} [0:0]
+{% for table in iptables.keys() %}
+*{{ table }}
+{% for chain in iptables[table].keys() %}
+:{{ chain }} {{ iptables[table][chain]['policy'] }} [0:0]
 {% endfor %}
-{% for k in iptables.keys() | sort %}
-{% for r in iptables[k]['rules'] %}
--A {{ k }} {{ r }}
+{% for chain in iptables[table].keys() %}
+{% for rule in iptables[table][chain]['rules'] %}
+-A {{ chain }} {{ rule }}
 {% endfor %}
 {% endfor %}
 COMMIT
+{% endfor %}
