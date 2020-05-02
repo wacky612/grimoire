@@ -8,7 +8,56 @@
       cpu_flags_x86: 'aes avx mmx mmxext pclmul popcnt sse sse2 sse3 sse4_1 sse4_2 ssse3'
       linguas: 'ja'
       makeopts: '-j3'
-    iptables: {}
+    iptables: {
+      'filter': {
+        'FORWARD': {
+          'rules': [
+            '-j SMB_DROP',
+            '-i enp0s3 -o tun0 -j INCOMING',
+            '-i tun0 -o enp0s3 -j OUTGOING',
+          ]
+        },
+        'INCOMING': {
+          'policy': '-',
+          'rules': [
+            '-s 192.168.0.0/16 -j DROP',
+            '-s 172.16.0.0/12  -j DROP',
+            '-s 10.0.0.0/8     -j DROP',
+            '-m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT'
+          ]
+        },
+        'OUTGOING': {
+          'policy': '-',
+          'rules': [
+            '-d 192.168.0.0/16 -j DROP',
+            '-d 172.16.0.0/12  -j DROP',
+            '-d 10.0.0.0/8     -j DROP',
+            '-j ACCEPT'
+          ]
+        },
+        'SMB_DROP': {
+          'policy': '-',
+          'rules': [
+            '-p udp --sport 137:139 -j DROP',
+            '-p udp --sport 445 -j     DROP',
+            '-p udp --dport 137:139 -j DROP',
+            '-p udp --dport 445 -j     DROP',
+            '-p tcp --sport 137:139 -j DROP',
+            '-p tcp --sport 445 -j     DROP',
+            '-p tcp --dport 137:139 -j DROP',
+            '-p tcp --dport 445 -j     DROP',
+          ]
+        }
+      },
+      'nat': {
+        'POSTROUTING': {
+          'policy': 'ACCEPT',
+          'rules': [
+            '-j MASQUERADE'
+          ]
+        }
+      }
+    }
     ip6tables: {
       'filter': {
         'MISC': { 'rules': [ '-p ipencap -j ACCEPT' ] }
@@ -16,6 +65,14 @@
     }
     openssh:
       xforwarding: true
+  tasks:
+    - name: enable ipv4 forwarding
+      sysctl:
+        name: net.ipv4.ip_forward
+        value: '1'
+        sysctl_set: yes
+        state: present
+        reload: yes
   roles:
     - systemd
     - openssh
