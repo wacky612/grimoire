@@ -7,3 +7,4 @@ dev-haskell/nats ~amd64
 dev-haskell/tagged ~amd64
 dev-haskell/unordered-containers ~amd64
 dev-haskell/transformers-compat ~amd64
+dev-haskell/fail ~amd64
