@@ -9,7 +9,7 @@ prepare: .venv
 	pip install ansible
 
 area6:
-	ansible-playbook -K area6.yml
+	ansible-playbook -K --diff area6.yml
 
 node304:
-	ansible-playbook -K node304.yml
+	ansible-playbook -K --diff node304.yml
