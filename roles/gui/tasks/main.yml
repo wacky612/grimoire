@@ -6,7 +6,15 @@
   with_items:
     - mpv
     - rxvt-unicode
+    - vivaldi
     - zathura-pdf-mupdf
+
+- name: configure /etc/portage/package.license/*
+  copy:
+    src: "package.license/{{ item }}"
+    dest: "/etc/portage/package.license/{{ item }}"
+  with_items:
+    - vivaldi
 
 - name: install gui applications
   portage:
@@ -17,3 +25,11 @@
     - urxvt-font-size
     - urxvt-perls
     - zathura-pdf-mupdf
+
+- name: install vivaldi
+  portage:
+    package: "{{ item }}"
+    state: present
+  with_items:
+    - vivaldi
+    - libxkbcommon
