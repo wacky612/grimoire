@@ -1,0 +1,3 @@
+dev-lang/ghc ~amd64
+dev-haskell/* ~amd64
+app-admin/haskell-updater ~amd64

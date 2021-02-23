@@ -16,6 +16,8 @@
     dest: "/etc/portage/package.accept_keywords/{{ item }}"
   with_items:
     - xmonad
+    - xmobar
+    - haskell
     - pasystray
 
 - name: install xmonad and some packages
