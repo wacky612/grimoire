@@ -7,8 +7,6 @@
     - xmobar
     - dunst
     - pavucontrol
-    - pavumeter
-    - trayer
 
 - name: configure /etc/portage/package.accept_keywords/*
   copy:
@@ -18,7 +16,6 @@
     - xmonad
     - xmobar
     - haskell
-    - pasystray
 
 - name: install xmonad and some packages
   portage:
@@ -29,8 +26,5 @@
     - xmobar
     - dmenu
     - dunst
-    - pasystray
     - pavucontrol
-    - pavumeter
-    - trayer
     - xset
