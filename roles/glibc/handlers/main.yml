@@ -1,0 +1,6 @@
+---
+- name: rebuild glibc
+  command: emerge --oneshot sys-libs/glibc
+
+- name: generate locales
+  command: locale-gen
