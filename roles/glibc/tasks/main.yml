@@ -1,0 +1,27 @@
+---
+- name: create /etc/portage/patches/sys-libs/glibc directorys
+  file:
+    path: "/etc/portage/patches/{{ item }}"
+    mode: 0755
+    state: directory
+  with_items:
+    - sys-libs
+    - sys-libs/glibc
+
+- name: install UTF-8-CJK.patch
+  copy:
+    src: UTF-8-CJK.patch
+    dest: /etc/portage/patches/sys-libs/glibc/UTF-8-CJK.patch
+  notify:
+    - rebuild glibc
+
+- name: modify /etc/locale.gen
+  lineinfile:
+    path: /etc/locale.gen
+    regexp: "^#?{{ item.key }}"
+    line: "{{ item.key }} {{ item.value }}"
+  with_items:
+    - { key: en_US.UTF-8, value: UTF-8 }
+    - { key: ja_JP.UTF-8, value: UTF-8 }
+  notify:
+    - generate locales
