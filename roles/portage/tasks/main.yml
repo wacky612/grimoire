@@ -8,6 +8,7 @@
     - package.use
     - package.accept_keywords
     - package.license
+    - patches
     - repos.conf
 
 - name: create local portage directory
