@@ -1,0 +1,44 @@
+---
+- name: install certbot
+  portage:
+    package: certbot
+    state: present
+
+- name: get certificate
+  command: >
+    certbot certonly
+    --domain {{ item }}
+    --standalone
+    --email wacky612@gmail.com
+    --agree-tos
+    --no-eff-email
+    --keep-until-expiring
+  args:
+    creates: "/etc/letsencrypt/renewal/{{ item }}.conf"
+  with_items: "{{ certbot.domains }}"
+
+- name: install certbot-renewal service/timer
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
+  with_items:
+    - certbot-renewal.service
+    - certbot-renewal.timer
+
+- name: enable certbot-renewal.timer
+  systemd:
+    name: certbot-renewal.timer
+    enabled: yes
+
+- name: load iptables config for certbot
+  set_fact:
+    iptables: "{{ iptables | deepmerge({
+      'filter': {
+        'TCP': { 'rules': [ '-p tcp --dport 80 -j ACCEPT' ] },
+      }
+    }) }}"
+    ip6tables: "{{ ip6tables | deepmerge({
+      'filter': {
+        'TCP': { 'rules': [ '-p tcp --dport 80 -j ACCEPT' ] },
+      }
+    }) }}"

@@ -65,6 +65,9 @@
     }
     openssh:
       xforwarding: true
+    certbot:
+      domains:
+        - www.wacky612.net
   tasks:
     - name: enable ipv4 forwarding
       sysctl:
@@ -79,6 +82,7 @@
     - openssh
     - cli
     - prince
+    - certbot
   post_tasks:
     - import_role: 
         name: iptables
