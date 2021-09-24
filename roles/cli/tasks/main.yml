@@ -15,6 +15,7 @@
     - bind-tools
     - bundler
     - convmv
+    - direnv
     - emacs
     - feh
     - gentoo-zsh-completions
