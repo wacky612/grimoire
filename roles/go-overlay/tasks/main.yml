@@ -1,0 +1,10 @@
+---
+- name: install go-overlay.conf
+  copy:
+    src: go-overlay.conf
+    dest: /etc/portage/repos.conf/go-overlay.conf
+  register: result
+
+- name: sync go-overlay repository
+  command: emerge --sync go-overlay
+  when: result.changed
