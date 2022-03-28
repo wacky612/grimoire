@@ -23,7 +23,7 @@
     - samba
     - xorg-server
     - lightdm
-    - xmonad
+    - qtile
     - gui
     - prince
   post_tasks:
