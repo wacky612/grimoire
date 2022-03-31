@@ -23,7 +23,7 @@
   with_items:
     - { key: PermitRootLogin, value: 'no' }
     - { key: PasswordAuthentication, value: 'no' }
-    - { key: ChallengeResponseAuthentication, value: 'no' }
+    - { key: KbdInteractiveAuthentication, value: 'no' }
   notify:
     - restart sshd
 
