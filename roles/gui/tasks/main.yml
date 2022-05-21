@@ -5,6 +5,7 @@
     dest: "/etc/portage/package.use/{{ item }}"
   with_items:
     - mpv
+    - pavucontrol
     - rxvt-unicode
     - vivaldi
     - zathura-pdf-mupdf
@@ -22,6 +23,7 @@
     state: present
   with_items:
     - mpv
+    - pavucontrol
     - urxvt-font-size
     - urxvt-perls
     - zathura-pdf-mupdf
