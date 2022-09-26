@@ -1,3 +1,5 @@
 dev-cpp/gtkmm X
 media-libs/libcanberra alsa
 media-libs/libpulse X
+x11-libs/cairo X aqua
+dev-cpp/cairomm X
