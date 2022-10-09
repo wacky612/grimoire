@@ -26,6 +26,7 @@
     - pavucontrol
     - urxvt-font-size
     - urxvt-perls
+    - youtube-dl
     - zathura-pdf-mupdf
 
 - name: install vivaldi
