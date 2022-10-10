@@ -22,7 +22,7 @@
     - atftp
     - samba
     - xorg-server
-    - lightdm
+    - greetd
     - qtile
     - gui
     - prince

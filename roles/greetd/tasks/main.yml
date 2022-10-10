@@ -1,0 +1,22 @@
+---
+- name: configure /etc/portage/package.accept_keywords/*
+  copy:
+    src: "package.accept_keywords/{{ item }}"
+    dest: "/etc/portage/package.accept_keywords/{{ item }}"
+  with_items:
+    - greetd
+
+- name: install greetd and tuigreet
+  portage:
+    package: tuigreet
+    state: present
+
+- name: install /etc/greetd/config.toml
+  copy:
+    src: config.toml
+    dest: /etc/greetd/config.toml
+
+- name: enable greetd
+  systemd:
+    name: greetd
+    enabled: yes
