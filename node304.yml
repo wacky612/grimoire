@@ -27,5 +27,5 @@
     - gui
     - prince
   post_tasks:
-    - import_role: 
+    - import_role:
         name: iptables
