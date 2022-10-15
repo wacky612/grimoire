@@ -1,0 +1,22 @@
+---
+- name: create gui-apps/wofi directorys
+  file:
+    path: "/var/db/repos/local/{{ item }}"
+    mode: 0755
+    state: directory
+  with_items:
+    - gui-apps
+    - gui-apps/wofi
+
+- name: install gui-apps/wofi/*
+  copy:
+    src: "{{ item }}"
+    dest: "/var/db/repos/local/gui-apps/wofi/{{ item }}"
+  with_items:
+    - Manifest
+    - wofi-1.2.4.ebuild
+
+- name: install wofi
+  portage:
+    package: wofi
+    state: present
