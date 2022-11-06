@@ -4,6 +4,7 @@
     src: "package.use/{{ item }}"
     dest: "/etc/portage/package.use/{{ item }}"
   with_items:
+    - abcde
     - mpv
     - pavucontrol
     - rxvt-unicode
@@ -22,6 +23,7 @@
     package: "{{ item }}"
     state: present
   with_items:
+    - abcde
     - mpv
     - pavucontrol
     - urxvt-font-size
