@@ -1,1 +1,2 @@
-media-video/mpv dvd zsh-completion
+media-video/mpv bluray dvd zsh-completion
+media-libs/libbluray aacs
