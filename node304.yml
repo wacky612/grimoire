@@ -24,6 +24,7 @@
     - xorg-server
     - greetd
     - qtile
+    - sway
     - gui
     - prince
   post_tasks:

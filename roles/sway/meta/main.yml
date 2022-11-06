@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: wofi }
+  - { role: swaylock-effects }

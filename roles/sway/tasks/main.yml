@@ -1,0 +1,24 @@
+---
+- name: configure /etc/portage/package.use/*
+  copy:
+    src: "package.use/{{ item }}"
+    dest: "/etc/portage/package.use/{{ item }}"
+  with_items:
+    - sway
+    - waybar
+
+- name: configure /etc/portage/package.accept_keywords/*
+  copy:
+    src: "package.accept_keywords/{{ item }}"
+    dest: "/etc/portage/package.accept_keywords/{{ item }}"
+  with_items:
+    - waybar
+
+- name: install sway and some packages
+  portage:
+    package: "{{ item }}"
+    state: present
+  with_items:
+    - sway
+    - fontawesome
+    - waybar
