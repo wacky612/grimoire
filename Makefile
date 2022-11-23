@@ -1,12 +1,4 @@
-export PATH := .venv/bin:$(PATH)
-
-.PHONY: prepare area6
-
-prepare: .venv
-
-.venv:
-	python -m venv .venv
-	pip install ansible
+.PHONY: area6 node304
 
 area6:
 	ansible-playbook -K --diff area6.yml
